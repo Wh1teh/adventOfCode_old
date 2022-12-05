@@ -1,6 +1,6 @@
 #include "header.h"
 
-void day4() {
+int day4() {
 	FILE* reader;
 	reader = fopen("./data/day4Data.txt", "r");
 	if (reader == NULL) {
@@ -66,4 +66,6 @@ void day4() {
 
 	printf("pairs with full overlap: %d\n", overlapCounter);
 	printf("pairs with any overlap: %d\n", partialCounter);
+
+	return 0;
 }

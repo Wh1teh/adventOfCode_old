@@ -1,6 +1,6 @@
 #include "header.h"
 
-void day2() {
+int day2() {
 	FILE* rps;
 	rps = fopen("./data/day2Data.txt", "r");
 	if (rps == NULL) {
@@ -189,4 +189,6 @@ void day2() {
 	fclose(rps);
 
 	printf("%d", sum);
+
+	return 0;
 }

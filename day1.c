@@ -1,6 +1,6 @@
 #include "header.h"
 
-void day1() {
+int day1() {
 	FILE* calorieGetter;
 	calorieGetter = fopen("./data/day1CalorieData.txt", "r");
 	if (calorieGetter == NULL) {
@@ -83,5 +83,7 @@ void day1() {
 	printf("top3: %d\n", sum);
 
 	free(elfArr);
+
+	return 0;
 }
 

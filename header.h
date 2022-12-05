@@ -8,4 +8,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "day3.c"
+#include "day4.c"
+#include "day5.c"
+
+
 #endif

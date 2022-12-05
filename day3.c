@@ -1,6 +1,6 @@
 #include "header.h"
 
-void day3() {
+int day3() {
 	FILE* rucksack;
 	rucksack = fopen("./data/day3Data.txt", "r");
 	if (rucksack == NULL) {
@@ -158,4 +158,6 @@ void day3() {
 	fclose(rucksack);
 
 	printf("2nd problem, final sum: %d\n", prioritySum);
+
+	return 0;
 }
