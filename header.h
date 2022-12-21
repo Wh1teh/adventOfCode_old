@@ -1,5 +1,6 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
+//#define DEBUG
 
 #pragma once
 #ifdef _MSC_VER
@@ -10,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <windows.h>
 
 #ifndef HEADER_FILE
 #include "day1.c"
@@ -19,6 +21,8 @@
 #include "day5.c"
 #include "day6.c"
 #include "day7.c"
+#include "day8.c"
+#include "day9.c"
 #endif
 
 #endif
