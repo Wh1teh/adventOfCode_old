@@ -1,6 +1,12 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
+
 //#define DEBUG
+#ifndef DEBUG
+#define TRACE( format, ... )
+#else
+#define TRACE( format, ... )   printf( "%s::%s(%d) " format, __FILE__, __FUNCTION__,  __LINE__, __VA_ARGS__ )
+#endif
 
 #pragma once
 #ifdef _MSC_VER
@@ -23,6 +29,7 @@
 #include "day07.c"
 #include "day08.c"
 #include "day09.c"
+#include "day10.c"
 #endif
 
 #endif
