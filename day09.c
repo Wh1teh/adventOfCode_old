@@ -142,9 +142,9 @@ int moveTail(char dir, int k/*knotN*/) {
 	return 0;
 }
 
-int day9() {
+int day09() {
 	FILE* reader;
-	reader = fopen("./data/day9Data.txt", "r");
+	reader = fopen("./data/day09Data.txt", "r");
 	if (reader == NULL)
 	{
 		perror("Error opening file");

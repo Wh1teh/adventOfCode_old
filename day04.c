@@ -1,8 +1,8 @@
 #include "header.h"
 
-int day4() {
+int day04() {
 	FILE* reader;
-	reader = fopen("./data/day4Data.txt", "r");
+	reader = fopen("./data/day04Data.txt", "r");
 	if (reader == NULL) {
 		perror("Error opening file");
 		return(-1);

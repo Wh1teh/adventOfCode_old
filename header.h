@@ -14,15 +14,15 @@
 #include <windows.h>
 
 #ifndef HEADER_FILE
-#include "day1.c"
-#include "day2.c"
-#include "day3.c"
-#include "day4.c"
-#include "day5.c"
-#include "day6.c"
-#include "day7.c"
-#include "day8.c"
-#include "day9.c"
+#include "day01.c"
+#include "day02.c"
+#include "day03.c"
+#include "day04.c"
+#include "day05.c"
+#include "day06.c"
+#include "day07.c"
+#include "day08.c"
+#include "day09.c"
 #endif
 
 #endif

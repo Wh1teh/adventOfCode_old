@@ -7,9 +7,9 @@ int visible = 0;
 void findVisible(char direction) {
 }
 
-int day8() {
+int day08() {
 	FILE* reader;
-	reader = fopen("./data/day8Data.txt", "r");
+	reader = fopen("./data/day08Data.txt", "r");
 	if (reader == NULL)
 	{
 		perror("Error opening file");

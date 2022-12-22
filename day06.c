@@ -29,9 +29,9 @@ static void searchPacketFromSignal(int sizeOfPacket) {
 	}
 }
 
-int day6() {
+int day06() {
 	FILE* device;
-	device = fopen("./data/day6Data.txt", "r");
+	device = fopen("./data/day06Data.txt", "r");
 	if (device == NULL)
 	{
 		perror("Error opening file");

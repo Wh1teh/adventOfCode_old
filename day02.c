@@ -1,8 +1,8 @@
 #include "header.h"
 
-int day2() {
+int day02() {
 	FILE* rps;
-	rps = fopen("./data/day2Data.txt", "r");
+	rps = fopen("./data/day02Data.txt", "r");
 	if (rps == NULL) {
 		perror("Error opening file");
 		return(-1);
@@ -103,7 +103,7 @@ int day2() {
 	printf("%d", sum);
 
 	//second problem
-	rps = fopen("./data/day2Data.txt", "r");
+	rps = fopen("./data/day02Data.txt", "r");
 	if (rps == NULL) {
 		perror("Error opening file");
 		return(-1);

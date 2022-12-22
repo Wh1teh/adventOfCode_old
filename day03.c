@@ -1,8 +1,8 @@
 #include "header.h"
 
-int day3() {
+int day03() {
 	FILE* rucksack;
-	rucksack = fopen("./data/day3Data.txt", "r");
+	rucksack = fopen("./data/day03Data.txt", "r");
 	if (rucksack == NULL) {
 		perror("Error opening file");
 		return(-1);

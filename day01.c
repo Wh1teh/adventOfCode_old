@@ -1,8 +1,8 @@
 #include "header.h"
 
-int day1() {
+int day01() {
 	FILE* calorieGetter;
-	calorieGetter = fopen("./data/day1CalorieData.txt", "r");
+	calorieGetter = fopen("./data/day01CalorieData.txt", "r");
 	if (calorieGetter == NULL) {
 		perror("Error opening file");
 		return(-1);

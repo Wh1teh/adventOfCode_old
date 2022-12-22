@@ -1,9 +1,9 @@
 #include "header.h"
 
-int day5()
+int day05()
 {
     FILE *crane;
-    crane = fopen("./data/day5Data.txt", "r");
+    crane = fopen("./data/day05Data.txt", "r");
     if (crane == NULL)
     {
         perror("Error opening file");
