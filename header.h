@@ -5,7 +5,7 @@
 #ifndef DEBUG
 #define TRACE( format, ... )
 #else
-#define TRACE( format, ... )   printf( "%s::%s(%d) " format, __FILE__, __FUNCTION__,  __LINE__, __VA_ARGS__ )
+#define TRACE( format, ... )   printf( "%s(%d) " format, __FUNCTION__,  __LINE__, __VA_ARGS__ )
 #endif
 
 #pragma once
