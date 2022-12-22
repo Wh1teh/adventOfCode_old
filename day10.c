@@ -21,7 +21,7 @@ int drawSprite(int totalValue, int cycle) {
 	return 0;
 }
 
-day10() {
+int day10() {
 	FILE* reader;
 	reader = fopen("./data/day10Data.txt", "r");
 	if (reader == NULL)
@@ -85,4 +85,6 @@ day10() {
 	fclose(reader);
 
 	printf("sum A: %d\n", signalSum);
+
+	return 0;
 }
