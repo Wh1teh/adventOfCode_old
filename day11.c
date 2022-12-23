@@ -11,7 +11,7 @@ typedef struct monkeyStruct {
 	int dest[2]; //which monkey to throw to? [1] true, [0] false
 }monkey;
 
-int readInput(monkey m[]) {
+static int readInput(monkey m[]) {
 	FILE* reader;
 	reader = fopen("./data/day11Data.txt", "r");
 	if (reader == NULL)

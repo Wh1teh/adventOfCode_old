@@ -1,7 +1,7 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
-//#define DEBUG
+#define DEBUG
 #ifndef DEBUG
 #define TRACE( format, ... )
 #else
@@ -19,17 +19,17 @@
 #include <ctype.h>
 #include <windows.h>
 
-#ifndef HEADER_FILE
-#include "day01.c"
-#include "day02.c"
-#include "day03.c"
-#include "day04.c"
-#include "day05.c"
-#include "day06.c"
-#include "day07.c"
-#include "day08.c"
-#include "day09.c"
-#include "day10.c"
-#endif
+//#ifndef HEADER_FILE
+//#include "day01.c"
+//#include "day02.c"
+//#include "day03.c"
+//#include "day04.c"
+//#include "day05.c"
+//#include "day06.c"
+//#include "day07.c"
+//#include "day08.c"
+//#include "day09.c"
+//#include "day10.c"
+//#endif
 
 #endif
