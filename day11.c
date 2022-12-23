@@ -3,15 +3,15 @@
 #define MONKEYS 8
 
 typedef struct monkeyStruct {
-	int items[100]; //item values
-	int itemCount;
-	int inspects;
-	int operation[3]; //operand+-*/ and value, 2: flag 'old'
-	int test; //divisible by value
-	int dest[2]; //which monkey to throw to? [1] true, [0] false
+	unsigned long long int items[100]; //item values
+	unsigned long long int itemCount;
+	unsigned long long int inspects;
+	unsigned long long int operation[3]; //operand+-*/ and value, 2: flag 'old'
+	unsigned long long int test; //divisible by value
+	unsigned long long int dest[2]; //which monkey to throw to? [1] true, [0] false
 }monkey;
 
-int day11() {
+unsigned long long int day11() {
 	FILE* reader;
 	reader = fopen("./data/day11Data.txt", "r");
 	if (reader == NULL)
@@ -22,10 +22,10 @@ int day11() {
 
 	monkey m[MONKEYS] = { { 0 } };
 
-	int count = 0;
-	char ch;
+	//read input
+	unsigned long long int count = 0;
 	char line[64] = { '\0' };
-	for (int i = 0; i < MONKEYS; i++)
+	for (unsigned long long int i = 0; i < MONKEYS; i++)
 	{
 		//skip useless lines
 		fgets(line, 64, reader);
@@ -34,14 +34,14 @@ int day11() {
 		count = 0;
 		while (line[count] != NULL)
 		{
-			sscanf(&line[count + 18], "%d%c", &m[i].items[count / 4], &ch);
-			TRACE("got item: %d, slot %d\n", m[i].items[count / 4], count / 4);
+			sscanf(&line[count + 18], "%llu%c", &m[i].items[count / 4], &line[0]);
+			TRACE("got item: %llu, slot %llu\n", m[i].items[count / 4], count / 4);
 			count += 4; //jump to next item
 			m[i].itemCount++;
 
-			if (ch == '\n') //end of starting items
+			if (line[0] == '\n') //end of starting items
 			{
-				TRACE("NEWLINE, final item count: %d\n", m[i].itemCount);
+				TRACE("NEWLINE, final item count: %llu\n", m[i].itemCount);
 				break;
 			}
 		}
@@ -49,50 +49,58 @@ int day11() {
 		//operation
 		fgets(line, 64, reader);
 		m[i].operation[0] = line[23]; //operand
-		sscanf(&line[25], "%d", &m[i].operation[1]); //value
+		sscanf(&line[25], "%llu", &m[i].operation[1]); //value
 
 		//test
 		fgets(line, 64, reader);
-		sscanf(&line[21], "%d", &m[i].test);
+		sscanf(&line[21], "%llu", &m[i].test);
 
 		//dest if true
 		fgets(line, 64, reader);
-		sscanf(&line[29], "%d", &m[i].dest[1]);
+		sscanf(&line[29], "%llu", &m[i].dest[1]);
 
 		//dest if false
 		fgets(line, 64, reader);
-		sscanf(&line[30], "%d", &m[i].dest[0]);
+		sscanf(&line[30], "%llu", &m[i].dest[0]);
 
-		TRACE("Got operation: %c %d\n", m[i].operation[0], m[i].operation[1]);
-		TRACE("Got divisible by: %d\n", m[i].test);
-		TRACE("Got if true throw to: %d\n", m[i].dest[1]);
-		TRACE("Got if false throw to: %d\n", m[i].dest[0]);
+		TRACE("Got operation: %c %llu\n", m[i].operation[0], m[i].operation[1]);
+		TRACE("Got divisible by: %llu\n", m[i].test);
+		TRACE("Got if true throw to: %llu\n", m[i].dest[1]);
+		TRACE("Got if false throw to: %llu\n", m[i].dest[0]);
 
 		fgets(line, 64, reader); //skip empty line
 	}
+	fclose(reader);
 
-	int rounds = 20;
-	int relief = 3;
-	for (int ab = 0; ab < 2; ab++)
+	unsigned long long int modAll = 1;
+
+	for (unsigned long long int j = 0; j < MONKEYS; j++) {
+		modAll *= m[j].test;
+	}
+	printf("modAll: %llu\n", modAll);
+
+	unsigned long long int rounds = 10000;
+	unsigned long long int relief = 1;
+	for (unsigned long long int ab = 0; ab < 1; ab++)
 	{
-		for (int i = 0; i < rounds; i++)
+		for (unsigned long long int i = 0; i < rounds; i++)
 		{
-			TRACE("\n\nROUND: %d\n\n", i);
-			for (int j = 0; j < MONKEYS; j++)
+			TRACE("\n\nROUND: %llu\n\n", i);
+			for (unsigned long long int j = 0; j < MONKEYS; j++)
 			{
-				TRACE("\nMONKEY %d:\n", j);
+				TRACE("\nMONKEY %llu:\n", j);
 
 				count = 0;
 				while (m[j].itemCount > 0) //while monkey has items
 				{
-					TRACE("count: %d, itemCount: %d\n", count, m[j].itemCount);
+					TRACE("count: %llu, itemCount: %llu\n", count, m[j].itemCount);
 					//inspect
-					TRACE("inspect: %d\n", m[j].items[count]);
+					TRACE("inspect: %llu\n", m[j].items[count]);
 					if (m[j].operation[1] == 0 || m[j].operation[2] == 1) //operation value is 'old'
 					{
 						m[j].operation[2] = 1; //flag operation value as 'old'
 						m[j].operation[1] = m[j].items[count];
-						TRACE("'old': %d\n", m[j].operation[1]);
+						TRACE("'old': %llu\n", m[j].operation[1]);
 					}
 					switch (m[j].operation[0]) //operand
 					{
@@ -115,23 +123,32 @@ int day11() {
 					default:
 						break;
 					}
-					TRACE("worry now: %d\n", m[j].items[count]);
+					TRACE("worry now: %llu\n", m[j].items[count]);
 
-					m[j].items[count] /= relief; //relief
-					TRACE("relief: %d\n", m[j].items[count]);
+					if (m[j].items[count] < 0)
+					{
+						printf("after mod: %llu\n", m[j].items[count]);
+						while (1) {}
+					}
 
-					int dest = 0;
+					//m[j].items[count] /= relief; //relief
+					TRACE("relief: %llu\n", m[j].items[count]);
+
+					m[j].items[count] = m[j].items[count] % modAll; //modulus
+					TRACE("after mod: %llu\n", m[j].items[count]);
+
+					unsigned long long int dest = 0;
 					if (m[j].items[count] % m[j].test == 0) //true, is divisible
 					{
 						dest = m[j].dest[1]; //destination if true
-						TRACE("true, send to: %d\n", dest);
+						TRACE("true, send to: %llu\n", dest);
 						m[dest].items[m[dest].itemCount] = m[j].items[count]; //sends item to first free spot at destination
 						m[dest].itemCount++; //destination monkey's item count increases
 					}
 					else //false
 					{
 						dest = m[j].dest[0]; //destination if false
-						TRACE("false, send to: %d\n", dest);
+						TRACE("false, send to: %llu\n", dest);
 						m[dest].items[m[dest].itemCount] = m[j].items[count]; //sends item to first free spot at destination
 						m[dest].itemCount++; //destination monkey's item count increases
 					}
@@ -143,16 +160,35 @@ int day11() {
 			}
 		}
 
-		for (int i = 0; i < MONKEYS; i++)
+		for (unsigned long long int i = 0; i < MONKEYS; i++)
 		{
-			printf("Monkey %d inspected items %d times\n", i, m[i].inspects);
+			printf("Monkey %llu inspected items %llu times\n", i, m[i].inspects);
 		}
 
 		//while(1){}
 
 		relief = 1; //no more relief
-		rounds = 10000;
+		rounds = 20;
 	}
+
+	//find best two
+	unsigned long long int best[2] = { 0 };
+	for (int i = 0; i < MONKEYS; i++)
+	{
+		count = 0;
+		for (int j = 0; j < MONKEYS; j++)
+		{
+			if (m[i].inspects < m[j].inspects)
+			{
+				count++;
+			}
+		}
+		if (count <= 1)
+		{
+			best[count] = m[i].inspects;
+		}
+	}
+	printf("%llu\n", best[0] * best[1]);
 
 	return 0;
 }
